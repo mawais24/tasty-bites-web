@@ -21,7 +21,7 @@ export type MenuCategory = {
   items: MenuItem[];
 };
 
-export const SQUARE_ONLINE_URL = "#"; // Replace with your Square Online takeaway URL
+export const SQUARE_ONLINE_URL = "https://tasty-bites-restaurant-bistro.square.site";
 
 // ─── Featured items shown on the homepage ────────────────────────────────────
 export const featuredItems: MenuItem[] = [
@@ -243,11 +243,10 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 5. Sandwiches & Wraps ─────────────────────────────────────────────────
+  // ── 5. Sandwiches ────────────────────────────────────────────────────────
   {
     id: "sandwiches",
-    name: "Sandwiches & Wraps",
-    tabLabel: "Sandwiches",
+    name: "Sandwiches",
     description: "Served with fries & salad",
     items: [
       {
@@ -279,6 +278,14 @@ export const menuCategories: MenuCategory[] = [
           "Pressed, warm & melty — slow-roasted lamb in toasted bread",
         price: 18,
       },
+    ],
+  },
+
+  // ── 6. Wraps ─────────────────────────────────────────────────────────────
+  {
+    id: "wraps",
+    name: "Wraps",
+    items: [
       {
         id: "sw5",
         name: "Desi Paratha Roll — Chicken Tikka",
@@ -305,7 +312,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 6. Rotiza ─────────────────────────────────────────────────────────────
+  // ── 7. Rotiza ─────────────────────────────────────────────────────────────
   {
     id: "rotiza",
     name: "Traditional Pakistani Rotiza",
@@ -344,7 +351,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 7. Pasta & Soup ───────────────────────────────────────────────────────
+  // ── 8. Pasta & Soup ───────────────────────────────────────────────────────
   {
     id: "pasta",
     name: "Pasta & Soup",
@@ -374,7 +381,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 8. Snacks & Chicken ───────────────────────────────────────────────────
+  // ── 9. Snacks & Chicken ───────────────────────────────────────────────────
   {
     id: "snacks",
     name: "Snacks & Grills",
@@ -434,7 +441,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 9. Salad Bar ─────────────────────────────────────────────────────────
+  // ── 10. Salad Bar ─────────────────────────────────────────────────────────
   {
     id: "salad-bar",
     name: "Salad Bar",
@@ -491,7 +498,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 10. Sides ─────────────────────────────────────────────────────────────
+  // ── 11. Sides ─────────────────────────────────────────────────────────────
   {
     id: "sides",
     name: "Sides",
@@ -539,7 +546,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 11. Lamb Roast Deals ──────────────────────────────────────────────────
+  // ── 12. Lamb Roast Deals ──────────────────────────────────────────────────
   {
     id: "lamb-roast",
     name: "Lamb Roast Deals",
@@ -565,7 +572,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 12. Ice Cream (Highlighted Signature Item) ───────────────────────────
+  // ── 13. Ice Cream (Highlighted Signature Item) ───────────────────────────
   {
     id: "ice-cream",
     name: "Premium Ice Cream",
@@ -589,7 +596,7 @@ export const menuCategories: MenuCategory[] = [
     items: [],
   },
 
-  // ── 13. Desserts ──────────────────────────────────────────────────────────
+  // ── 14. Desserts ──────────────────────────────────────────────────────────
   {
     id: "desserts",
     name: "Desserts & Sweet Treats",
@@ -652,7 +659,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 13. Milkshakes ───────────────────────────────────────────────────────
+  // ── 15. Milkshakes ───────────────────────────────────────────────────────
   {
     id: "milkshakes",
     name: "Milkshakes",
@@ -733,7 +740,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 14. Fresh Juices ─────────────────────────────────────────────────────
+  // ── 16. Fresh Juices ─────────────────────────────────────────────────────
   {
     id: "juices",
     name: "Fresh Juices",
@@ -814,7 +821,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 15. Hot Drinks ───────────────────────────────────────────────────────
+  // ── 17. Hot Drinks ───────────────────────────────────────────────────────
   {
     id: "hot-drinks",
     name: "Hot Drinks",
@@ -848,7 +855,7 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 
-  // ── 16. Soft Drinks ──────────────────────────────────────────────────────
+  // ── 18. Soft Drinks ──────────────────────────────────────────────────────
   {
     id: "soft-drinks",
     name: "Soft Drinks",
