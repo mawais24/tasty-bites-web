@@ -8,6 +8,7 @@ export type MenuItem = {
   priceDisplay?: string;
   badge?: "popular" | "chef-special" | "new" | "signature";
   dietary?: Dietary[];
+  image?: string;
 };
 
 export type MenuCategory = {
@@ -32,6 +33,7 @@ export const featuredItems: MenuItem[] = [
       "Slow-cooked tender lamb over fragrant mandi rice with traditional Pakistani spices, served with fresh salad and house chutneys",
     price: 30,
     badge: "signature",
+    image: "/lamb-mandi.jpeg",
   },
   {
     id: "feat-2",
@@ -40,6 +42,7 @@ export const featuredItems: MenuItem[] = [
       "Free-range chicken marinated in our signature blend of Pakistani herbs and spices, served with roasted vegetables and house chips",
     price: 26,
     badge: "popular",
+    image: "/chicken-steak.jpeg",
   },
   {
     id: "feat-3",
@@ -48,6 +51,17 @@ export const featuredItems: MenuItem[] = [
       "Warm, flaky paratha wrapped around your choice of chargrilled chicken tikka, slow-roasted lamb, or spiced paneer — $15 each",
     price: 15,
     badge: "popular",
+    image: "/desi-paratha-roll.jpeg",
+  },
+  {
+    id: "feat-4",
+    name: "Traditional Pakistani Rotiza",
+    description:
+      "Our unique take on Pakistani-style flatbread pizza. Choose your style: Deep Dish, Flat Bread, Crusty Bites, Cheese Slab or Crispy Disaster. Loaded with onions, capsicums, tomatoes, olives, jalapeños, mozzarella, spinach, rocket & pineapple.",
+    price: 18,
+    priceDisplay: "From $18",
+    badge: "new",
+    image: "/hero-image/pizza.jpeg",
   },
 ];
 

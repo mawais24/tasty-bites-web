@@ -1,26 +1,43 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MapPin, ChevronRight } from "lucide-react";
 import { featuredItems, SQUARE_ONLINE_URL } from "@/data/menu";
+
+const badgeLabels: Record<string, string> = {
+  popular: "Popular",
+  "chef-special": "Chef's Special",
+  new: "New",
+  signature: "Signature",
+};
 
 export default function HomePage() {
   return (
     <>
       {/* ─── Hero ──────────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-espresso-deep">
+        <Image
+          src="/hero-banner.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at center, #261b0d 0%, #1a1208 55%, #0f0905 100%)",
+              "radial-gradient(ellipse at center, rgba(38,27,13,0.25) 0%, rgba(26,18,8,0.45) 55%, rgba(15,9,5,0.7) 100%)",
           }}
         />
         <div
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-50"
           style={{
             background:
-              "radial-gradient(ellipse at 80% 90%, rgba(201,148,58,0.12) 0%, transparent 60%)",
+              "radial-gradient(ellipse at 80% 90%, rgba(201,148,58,0.18) 0%, transparent 60%)",
           }}
         />
+        <div className="absolute inset-0 bg-linear-to-t from-espresso-deep/85 via-espresso-deep/20 to-transparent" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-20 pb-24 text-center">
           <p className="text-gold text-xs tracking-[0.35em] uppercase font-sans mb-5">
@@ -94,14 +111,29 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Decorative block */}
-            <div className="relative hidden lg:flex items-center justify-center h-96">
-              <div className="absolute inset-0 bg-espresso/5 border border-espresso/8" />
-              <div className="absolute -bottom-4 -left-4 w-40 h-40 bg-gold/8 border border-gold/15" />
-              <div className="relative text-center px-8">
-                <p className="font-serif text-espresso/6 text-[8rem] font-bold leading-none select-none">
-                  TB
-                </p>
+            {/* Photo composition */}
+            <div className="relative h-80 sm:h-96 lg:h-120">
+              {/* Offset gold frame behind the main photo */}
+              <div className="absolute top-4 right-0 w-[85%] h-[80%] border border-gold/50" />
+              {/* Main hall — large image */}
+              <div className="absolute top-0 right-4 w-[85%] h-[80%] shadow-xl overflow-hidden">
+                <Image
+                  src="/Tasty-bites-main-hall.jpeg"
+                  alt="Inside the Tasty Bites dining hall in Morley"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 90vw"
+                  className="object-cover"
+                />
+              </div>
+              {/* Entrance — smaller overlapping image, framed like a photo card */}
+              <div className="absolute bottom-0 left-0 w-[58%] h-[55%] border-[6px] border-cream shadow-2xl overflow-hidden">
+                <Image
+                  src="/Tasty-bites-main-entrance.jpeg"
+                  alt="Tasty Bites Restaurant & Bistro entrance"
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 55vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
@@ -158,27 +190,35 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="divide-y divide-espresso/8 max-w-3xl mx-auto">
-            {featuredItems.map((item, i) => (
-              <div
-                key={item.id}
-                className="flex items-start justify-between gap-6 py-8 group"
-              >
-                <div className="flex items-start gap-5">
-                  <span className="font-serif text-gold/40 text-sm font-bold mt-0.5 w-6 shrink-0">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="font-serif text-espresso text-lg font-semibold mb-1 group-hover:text-gold transition-colors">
-                      {item.name}
-                    </h3>
-                    <p className="text-warm-brown text-sm leading-relaxed max-w-sm">
-                      {item.description}
-                    </p>
-                  </div>
+          <div className="grid sm:grid-cols-2 gap-10 lg:gap-12 max-w-5xl mx-auto">
+            {featuredItems.map((item) => (
+              <div key={item.id} className="group">
+                <div className="relative aspect-4/3 overflow-hidden mb-5">
+                  {item.image && (
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      sizes="(min-width: 640px) 45vw, 90vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  )}
+                  {item.badge && (
+                    <span className="absolute top-4 left-4 text-[10px] font-semibold tracking-wide uppercase bg-gold text-espresso px-2.5 py-1">
+                      {badgeLabels[item.badge]}
+                    </span>
+                  )}
                 </div>
-                <p className="font-serif text-espresso text-lg font-medium shrink-0 mt-0.5">
-                  ${item.price}
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-serif text-espresso text-lg font-semibold group-hover:text-gold transition-colors">
+                    {item.name}
+                  </h3>
+                  <p className="font-serif text-espresso text-lg font-medium shrink-0">
+                    {item.priceDisplay ?? `$${item.price}`}
+                  </p>
+                </div>
+                <p className="text-warm-brown text-sm leading-relaxed mt-1.5">
+                  {item.description}
                 </p>
               </div>
             ))}
