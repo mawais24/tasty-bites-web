@@ -40,6 +40,14 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-linear-to-t from-espresso-deep/85 via-espresso-deep/20 to-transparent" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-20 pb-24 text-center">
+          <Image
+            src="/tasty-bites-logo-circle.png"
+            alt="Tasty Bites Restaurant & Bistro"
+            width={300}
+            height={300}
+            priority
+            className="h-28 w-28 sm:h-32 sm:w-32 rounded-full object-cover mx-auto mb-6 ring-1 ring-gold/50 shadow-[0_0_40px_rgba(201,148,58,0.25)]"
+          />
           <p className="text-gold text-xs tracking-[0.35em] uppercase font-sans mb-5">
             Modern Pakistani Cuisine
           </p>
