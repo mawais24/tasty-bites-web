@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { menuCategories, SQUARE_ONLINE_URL, type Dietary } from "@/data/menu";
+import { SQUARE_ONLINE_URL } from "@/lib/constants";
+import { getMenuCategories, type Dietary } from "@/lib/menu";
 import MenuTabs from "@/components/MenuTabs";
 
 export const metadata: Metadata = {
@@ -29,7 +30,8 @@ const iceCreamScoops = [
   { label: "3 Scoops", price: "$10" },
 ];
 
-export default function MenuPage() {
+export default async function MenuPage() {
+  const menuCategories = await getMenuCategories();
   return (
     <>
       {/* ─── Page Hero ─────────────────────────────────────────────────────── */}
@@ -68,7 +70,7 @@ export default function MenuPage() {
       </div>
 
       {/* ─── Sticky Tab Navigation ─────────────────────────────────────────── */}
-      <MenuTabs />
+      <MenuTabs categories={menuCategories} />
 
       {/* ─── Menu Content ──────────────────────────────────────────────────── */}
       <div className="bg-cream">

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Globe } from "lucide-react";
-import { SQUARE_ONLINE_URL } from "@/data/menu";
+import { SQUARE_ONLINE_URL } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -43,6 +43,7 @@ export default function Footer() {
               {[
                 { href: "/", label: "Home" },
                 { href: "/menu", label: "Dine-in Menu" },
+                { href: "/book", label: "Book a Table" },
                 { href: "/contact", label: "Contact Us" },
               ].map(({ href, label }) => (
                 <li key={href}>

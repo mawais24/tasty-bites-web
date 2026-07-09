@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { SQUARE_ONLINE_URL } from "@/data/menu";
+import { SQUARE_ONLINE_URL } from "@/lib/constants";
 
 function subscribeScroll(cb: () => void) {
   window.addEventListener("scroll", cb, { passive: true });
@@ -77,8 +77,14 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Order Online CTA */}
-        <div className="hidden md:block">
+        {/* CTAs */}
+        <div className="hidden md:flex items-center gap-3">
+          <Link
+            href="/book"
+            className="inline-block border border-gold text-gold text-sm font-semibold tracking-wide px-6 py-2.5 hover:bg-gold hover:text-espresso transition-colors"
+          >
+            Book a Table
+          </Link>
           <a
             href={SQUARE_ONLINE_URL}
             target="_blank"
@@ -118,12 +124,19 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
+            <Link
+              href="/book"
+              onClick={() => setMobileOpen(false)}
+              className="mt-4 block text-center border border-gold text-gold text-sm font-semibold tracking-wide px-6 py-3 hover:bg-gold hover:text-espresso transition-colors"
+            >
+              Book a Table
+            </Link>
             <a
               href={SQUARE_ONLINE_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="mt-4 block text-center bg-gold text-espresso text-sm font-semibold tracking-wide px-6 py-3 hover:bg-gold-light transition-colors"
+              className="mt-2 block text-center bg-gold text-espresso text-sm font-semibold tracking-wide px-6 py-3 hover:bg-gold-light transition-colors"
             >
               Order Online
             </a>

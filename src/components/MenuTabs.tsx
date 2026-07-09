@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { menuCategories } from "@/data/menu";
+import type { MenuCategory } from "@/lib/menu";
 
 const SCROLL_OFFSET = 144; // navbar (72px) + tab bar (~56px) + padding (16px)
 
-export default function MenuTabs() {
-  const [activeId, setActiveId] = useState(menuCategories[0].id);
+export default function MenuTabs({ categories: menuCategories }: { categories: MenuCategory[] }) {
+  const [activeId, setActiveId] = useState(menuCategories[0]?.id ?? "");
   const navRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const isManualScrollRef = useRef(false);
@@ -30,7 +30,7 @@ export default function MenuTabs() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [menuCategories]);
 
   // Auto-scroll the tab bar so the active tab is always visible
   useEffect(() => {

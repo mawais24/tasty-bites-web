@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, ChevronRight } from "lucide-react";
-import { featuredItems, SQUARE_ONLINE_URL } from "@/data/menu";
+import { SQUARE_ONLINE_URL } from "@/lib/constants";
+import { getFeaturedItems } from "@/lib/menu";
 
 const badgeLabels: Record<string, string> = {
   popular: "Popular",
@@ -10,7 +11,8 @@ const badgeLabels: Record<string, string> = {
   signature: "Signature",
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const featuredItems = await getFeaturedItems();
   return (
     <>
       {/* ─── Hero ──────────────────────────────────────────────────────────── */}
@@ -65,6 +67,12 @@ export default function HomePage() {
               className="inline-block bg-gold text-espresso text-sm font-semibold tracking-wide px-8 py-3.5 hover:bg-gold-light transition-colors"
             >
               Explore Our Menu
+            </Link>
+            <Link
+              href="/book"
+              className="inline-block border border-gold text-gold text-sm font-semibold tracking-wide px-8 py-3.5 hover:bg-gold hover:text-espresso transition-colors"
+            >
+              Book a Table
             </Link>
             <a
               href={SQUARE_ONLINE_URL}
@@ -258,12 +266,20 @@ export default function HomePage() {
               comfortable seating, and service that feels like home.
             </p>
           </div>
-          <Link
-            href="/menu"
-            className="mt-8 self-start inline-flex items-center gap-2 bg-cream text-espresso text-sm font-semibold tracking-wide px-6 py-3 hover:bg-gold hover:text-espresso transition-colors"
-          >
-            View Our Menu <ChevronRight size={14} />
-          </Link>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/menu"
+              className="self-start inline-flex items-center gap-2 bg-cream text-espresso text-sm font-semibold tracking-wide px-6 py-3 hover:bg-gold hover:text-espresso transition-colors"
+            >
+              View Our Menu <ChevronRight size={14} />
+            </Link>
+            <Link
+              href="/book"
+              className="self-start inline-flex items-center gap-2 border border-cream/30 text-cream text-sm font-semibold tracking-wide px-6 py-3 hover:bg-cream/10 transition-colors"
+            >
+              Book a Table <ChevronRight size={14} />
+            </Link>
+          </div>
         </div>
 
         <div className="bg-gold px-10 py-20 flex flex-col justify-between min-h-90">

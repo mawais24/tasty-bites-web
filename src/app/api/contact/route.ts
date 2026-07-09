@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { sendEmail, escapeHtml } from "@/lib/email";
 
 const RECIPIENT = "mr.mawais24@gmail.com";
 const MIN_FILL_MS = 4000; // submissions faster than 4s are treated as bots
@@ -40,19 +40,6 @@ export async function POST(req: NextRequest) {
   ) {
     return NextResponse.json({ error: "Please fill in all required fields." }, { status: 400 });
   }
-
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    console.error("Missing GMAIL_USER or GMAIL_APP_PASSWORD env vars.");
-    return NextResponse.json({ error: "Server configuration error." }, { status: 500 });
-  }
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD,
-    },
-  });
 
   const html = `
 <!DOCTYPE html>
@@ -119,8 +106,7 @@ export async function POST(req: NextRequest) {
 </html>`;
 
   try {
-    await transporter.sendMail({
-      from: `"Tasty Bites Website" <${process.env.GMAIL_USER}>`,
+    await sendEmail({
       to: RECIPIENT,
       replyTo: `"${name.trim()}" <${email.trim()}>`,
       subject: `New enquiry from ${name.trim()} — Tasty Bites`,
@@ -132,13 +118,4 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ ok: true });
-}
-
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
 }
